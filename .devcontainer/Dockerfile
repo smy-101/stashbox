@@ -13,9 +13,6 @@ RUN gem install bundler
 # 设置工作目录
 WORKDIR /workspace
 
-# 安装 Solargraph（Ruby 语言服务器）
-RUN gem install solargraph
-
 # 设置PATH
 ENV PATH="/workspace/bin:${PATH}"
 

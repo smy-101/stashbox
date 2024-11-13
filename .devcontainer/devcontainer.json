@@ -1,7 +1,7 @@
 {
   "name": "Rails Development",
   "dockerComposeFile": "docker-compose.yml",
-  "service": "web",
+  "service": "app",
   "workspaceFolder": "/workspace",
   // 使用新的customizations格式
   "customizations": {
@@ -13,33 +13,33 @@
         "files.trimTrailingWhitespace": true,
         "ruby.useBundler": true,
         "ruby.useLanguageServer": true,
-        "ruby.lint": {
-          "rubocop": true
-        }
+        "editor.formatOnSave": true,
+        "files.trimFinalNewlines": true,
+        "files.insertFinalNewline": true,
+        "editor.rulers": [
+          80,
+          120
+        ]
       },
       // 推荐的扩展
       "extensions": [
-        "rebornix.ruby",
-        "castwide.solargraph",
-        "misogi.ruby-rubocop",
-        "kaiwood.endwise",
-        "aki77.rails-db-schema"
+        "Shopify.ruby-lsp",
+        "miguel-savignano.ruby-symbols",
+        "trinm1709.dracula-theme-from-intellij",
+        "Hridoy.rails-snippets",
+        "groksrc.ruby"
       ]
     }
   },
   // 容器创建后运行的命令
   "postCreateCommand": "bundle install",
-  // 环境变量
-  "remoteEnv": {
-    "RAILS_ENV": "development"
-  },
   // 转发的端口
   "forwardPorts": [
-    3000
+    3000,
+    5432
   ],
   // 其他特性标记
   "features": {
-    "ghcr.io/devcontainers/features/node:1": {},
     "ghcr.io/devcontainers/features/git:1": {}
   }
 }
