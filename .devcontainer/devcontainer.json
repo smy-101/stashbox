@@ -11,23 +11,36 @@
         "terminal.integrated.defaultProfile.linux": "bash",
         "editor.tabSize": 2,
         "files.trimTrailingWhitespace": true,
-        "ruby.useBundler": true,
-        "ruby.useLanguageServer": true,
         "editor.formatOnSave": true,
         "files.trimFinalNewlines": true,
         "files.insertFinalNewline": true,
         "editor.rulers": [
           80,
           120
-        ]
+        ],
+        // Ruby 相关设置
+        "ruby.useBundler": true,
+        "ruby.useLanguageServer": true,
+        "ruby.intellisense": "rubyLocate",
+        "ruby.format": "rubocop",
+        "ruby.lint": {
+          "rubocop": {
+            "useBundler": true
+          }
+        },
+        "ruby.interpreter.path": "/usr/local/bin/ruby",
+        "rubyLsp.rubyVersionManager": {
+          "type": "none"
+        }
       },
       // 推荐的扩展
       "extensions": [
         "Shopify.ruby-lsp",
         "miguel-savignano.ruby-symbols",
-        "trinm1709.dracula-theme-from-intellij",
         "Hridoy.rails-snippets",
-        "groksrc.ruby"
+        "groksrc.ruby",
+        "misogi.ruby-rubocop",
+        "kaiwood.endwise"
       ]
     }
   },
