@@ -22,12 +22,20 @@ default: &default
 
 development:
   <<: *default
-  host: db
-  username: <%= ENV.fetch("POSTGRES_USER") { 'postgres' } %>
-  password: <%= ENV.fetch("POSTGRES_PASSWORD") { 'postgres' } %>
-  database: <%= ENV.fetch("POSTGRES_DB") { 'stashbox_development' } %>
-  # database: stashbox_development
 
+  #在容器中使用
+  # host: db
+  # username: <%= ENV.fetch("POSTGRES_USER") { 'postgres' } %>
+  # password: <%= ENV.fetch("POSTGRES_PASSWORD") { 'postgres' } %>
+  # database: <%= ENV.fetch("POSTGRES_DB") { 'stashbox_development' } %>
+
+  #在本地使用
+  host: localhost
+  port: 5432
+  username: postgres
+  password: postgres
+
+  # database: stashbox_development
   # The specified database role being used to connect to PostgreSQL.
   # To create additional roles in PostgreSQL see `$ createuser --help`.
   # When left blank, PostgreSQL will use the default role. This is

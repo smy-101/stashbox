@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  db:
+    image: postgres:16
+    container_name: stashbox_postgres  # 给容器一个固定名称，便于引用
+    restart: unless-stopped
+    ports:
+      - "5432:5432"  # 映射到本机端口，使本机Ruby环境可以访问
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: stashbox_development
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres-data:
+    name: stashbox_postgres_data  # 给数据卷一个固定名称
