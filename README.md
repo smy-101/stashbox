@@ -1,24 +1,23 @@
-# README
+# Quick Start
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+```
+docker compose -f docker-compose.db.yml up -d
 
-Things you may want to cover:
+rails db:migrate
 
-* Ruby version
+rails s
+```
 
-* System dependencies
+## 重置环境
 
-* Configuration
+```
+# 停止并删除容器和网络（保留数据卷）
+docker compose -f docker-compose.db.yml down
 
-* Database creation
+# 停止并删除容器、网络和数据卷
+docker compose -f docker-compose.db.yml down -v
 
-* Database initialization
+# 重新创建并启动
+docker compose -f docker-compose.db.yml up -d
+```
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
