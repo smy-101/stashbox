@@ -5,10 +5,15 @@ docker compose -f docker-compose.db.yml up -d
 
 rails db:migrate
 
+# 编辑credentials
+EDITOR="vim" rails credentials:edit --environment development
+# 生产环境
+EDITOR="code --wait" rails credentials:edit --environment production
+
 rails s
 ```
 
-## 重置环境
+# 重置环境
 
 ```
 # 停止并删除容器和网络（保留数据卷）
