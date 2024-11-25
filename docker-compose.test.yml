@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  db_test:
+    image: postgres:16
+    container_name: stashbox_postgres_test  # 给测试数据库容器一个固定名称
+    restart: unless-stopped
+    ports:
+      - "5433:5432"  # 映射到本机的不同端口，以避免与开发数据库冲突
+    volumes:
+      - postgres-test-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: stashbox_test
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres-test-data:
+    name: stashbox_postgres_test_data  # 给测试数据卷一个固定名称
