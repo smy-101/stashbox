@@ -16,7 +16,7 @@ RSpec.describe 'Api::V1::Users', type: :request do
       }
 
       response '201', '用户创建成功' do
-        let(:user) { { email: 'test@example.com', password: 'password123' } }
+        let(:user) { { user: { email: 'test@example.com', password: 'password123' } } }
 
         run_test! do |response|
           expect(response).to have_http_status(201)
