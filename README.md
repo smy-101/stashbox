@@ -29,6 +29,13 @@ docker compose -f docker-compose.dev.yml up -d
 # 测试
 
 ```
+# 启动测试数据库
 docker compose -f docker-compose.test.yml up -d
+
+# 进行测试
+bundle exec rspec
+
+# 生成文档
+bundle exec rake rswag:specs:swaggerize
 ```
 

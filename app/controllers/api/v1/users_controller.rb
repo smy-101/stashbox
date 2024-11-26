@@ -1,16 +1,10 @@
-class Api::V1::UsersController < Api::V1::BaseController
-  # before_action :authenticate_user, only: [ :me, :update ]
-
+class Api::V1::UsersController < ApplicationController
   def create
     user = User.new(user_params)
     if user.save
-      token = jwt_encode(user.id)
-      render_success(:created, {
-            user: user.as_json(except: :password_digest),
-            token: token
-          })
+      render json: { jwt: user.generate_jwt }, status: :created
     else
-      render_error(:unprocessable_entity, user.errors.full_messages)
+      render json: { message: user.errors.full_messages }, status: :unprocessable_entity
     end
   end
 

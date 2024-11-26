@@ -9,10 +9,16 @@ RSpec.describe 'Api::V1::Users', type: :request do
       parameter name: :user, in: :body, schema: {
         type: :object,
         properties: {
-          email: { type: :string },
-          password: { type: :string }
+          user: {
+            type: :object,
+            properties: {
+              email: { type: :string },
+              password: { type: :string }
+            },
+            required: [ 'email', 'password' ]
+          }
         },
-        required: [ 'email', 'password' ]
+        required: [ 'user' ]
       }
 
       response '201', '用户创建成功' do
@@ -24,9 +30,10 @@ RSpec.describe 'Api::V1::Users', type: :request do
       end
 
       response '422', '参数错误' do
-        let(:user) { { email: 'invalid' } }
+        let(:user) { { user: { email: 'invalid' } } }
 
         run_test! do |response|
+          p response.body
           expect(response).to have_http_status(422)
         end
       end
