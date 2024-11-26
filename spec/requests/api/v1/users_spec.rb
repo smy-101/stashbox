@@ -33,7 +33,6 @@ RSpec.describe 'Api::V1::Users', type: :request do
         let(:user) { { user: { email: 'invalid' } } }
 
         run_test! do |response|
-          p response.body
           expect(response).to have_http_status(422)
         end
       end

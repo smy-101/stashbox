@@ -1,18 +1,11 @@
-class Api::V1::SessionsController < BaseController
-  before_action :authenticate_user!, only: [ :destroy ]
-
+class Api::V1::SessionsController < ApplicationController
   # POST /api/v1/sessions
   def create
     user = User.find_by(email: login_params[:email])
-
     if user&.authenticate(login_params[:password])
-      token = jwt_encode(user_id: user.id)
-      render_success({
-            user: user.as_json(except: :password_digest),
-            token: token
-          }, :created)
+      render json: { jwt: user.generate_jwt, email: user.email }, status: :ok
     else
-      render_error(:unauthorized, "邮箱或密码错误")
+      render json: { error: "邮箱或密码错误" }, status: :unauthorized
     end
   end
 
