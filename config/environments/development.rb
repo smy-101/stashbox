@@ -39,6 +39,19 @@ Rails.application.configure do
   # Set localhost to be used by links generated in mailer templates.
   config.action_mailer.default_url_options = { host: "localhost", port: 3000 }
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+    address:              "smtp.qq.com",
+    port:                 587,
+    domain:               "smtp.qq.com",
+    user_name:            "shimy1011@foxmail.com",
+    password:             Rails.application.credentials.email_password,
+    authentication:       "plain",
+    enable_starttls_auto: true,
+    open_timeout:         10,
+    read_timeout:         10
+  }
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
