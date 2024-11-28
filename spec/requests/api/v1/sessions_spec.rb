@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe "Api::V1::Sessions", type: :request do
-  path '/api/v1/sessions' do
+  path '/api/v1/session' do
     post '用户登录' do
       tags 'Sessions'
       consumes 'application/json'

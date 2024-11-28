@@ -12,7 +12,8 @@ Rails.application.routes.draw do
       end
 
       # 会话管理
-      resource :sessions, only: [ :create, :destroy ]
+      resource :session, only: [ :create, :destroy ]
+      resources :validation_codes, only: [ :create ]
     end
   end
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
